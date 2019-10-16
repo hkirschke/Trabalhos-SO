@@ -1,0 +1,7 @@
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\bin\Debug\ProcessExecute.exe.config
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\bin\Debug\ProcessExecute.exe
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\bin\Debug\ProcessExecute.pdb
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\obj\Debug\ProcessExecute.csprojAssemblyReference.cache
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\obj\Debug\ProcessExecute.csproj.CoreCompileInputs.cache
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\obj\Debug\ProcessExecute.exe
+D:\Usuários\1044841\source\repos\ProcessExecute\ProcessExecute\ProcessExecute\obj\Debug\ProcessExecute.pdb
