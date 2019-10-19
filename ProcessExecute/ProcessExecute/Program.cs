@@ -1,45 +1,32 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ProcessExecute
 {
-  class Program
+  public static class Program
   {
-    private static Thread _thread;
     static void Main(string[] args)
     {
       try
       {
-        Console.WriteLine("Gerando nova thread para execução em paralelo");
-        Console.WriteLine("Thread principal iniciada");
-        Thread.CurrentThread.Name = "Principal - Program.cs - ProcessExecute"; 
+        Thread.CurrentThread.Name = "Principal - Program.cs - ProcessExecute";
+        Console.WriteLine($"Thread principal iniciada {Thread.CurrentThread.Name}");
         if (args.Length > 1)
         {
-          _thread = new Thread(() =>
+          Task.Factory.StartNew(() =>
           {
-            Console.WriteLine("Executando segunda thread");
-            Execute(args[0], args[1]);
-            //Código que será executado em paralelo ao resto do código
+            ProcessExecuter.Execute(args[0], args[1]);
           });
-          _thread.Name = "Início da segunda thread";
-          _thread.Start();
           Console.WriteLine($"Thread: {Thread.CurrentThread.Name}");
-          Console.WriteLine($"Processo em paralelo será encerrado em {args[1]}");
+          Console.WriteLine($"Processo em paralelo será iniciado em {args[1]} segundos");
+          TimerCallback callback = new TimerCallback(Cronometro);
+          Timer stateTimer = new Timer(callback, null, 0, 1000); 
           Console.ReadKey();
         }
         else
         {
-          _thread = new Thread(() =>
-          {
-            Console.WriteLine("Executando segunda thread");
-            Execute(args[0]);
-            //Código que será executado em paralelo ao resto do código
-          });
-          
-          _thread.Name = "Início da segunda thread";
-          _thread.Start();
-          Console.WriteLine($"Thread: {Thread.CurrentThread.Name} - Em espera...");
+          Console.WriteLine("Deve ser informado o aplicativo a ser executa e tempo para iniciar Ex: Calc.exe 20");
           Console.ReadKey();
         }
       }
@@ -48,18 +35,9 @@ namespace ProcessExecute
         Console.WriteLine(ex.StackTrace);
       }
     }
-    static void Execute(string pathExec, string strTimeKill)
+    static public void Cronometro(object stateInfo)
     {
-      Process _process = Process.Start(pathExec);
-      if (int.TryParse(strTimeKill, out int killTime))
-      {
-        _process.WaitForExit((killTime * 1000)); 
-        _process.Kill();
-      }
-    }
-    static void Execute(string pathExec)
-    {
-      Process.Start(pathExec);
+      Console.WriteLine("Hora: {0}", DateTime.Now.ToString("hh:mm:ss"));
     }
   }
 }
