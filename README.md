@@ -1,2 +1,2 @@
 # Trabalhos-SO
-Source Code de Trabalhos SO 
+Repositório de Trabalhos para SO 
