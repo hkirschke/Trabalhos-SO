@@ -1,0 +1,10 @@
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\bin\Debug\ProcessReader.exe.config
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\bin\Debug\ProcessReader.exe
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\bin\Debug\ProcessReader.pdb
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.csprojAssemblyReference.cache
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.MainForm.resources
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.Properties.Resources.resources
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.csproj.GenerateResource.cache
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.csproj.CoreCompileInputs.cache
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.exe
+C:\Users\henri\Documents\GitHub\Trabalhos-SO\ProcessReader\ProcessReader\obj\Debug\ProcessReader.pdb
