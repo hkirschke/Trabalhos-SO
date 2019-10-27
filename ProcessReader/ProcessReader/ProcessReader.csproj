@@ -93,5 +93,11 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\favicon.ico" />
+    <Content Include="Icons\puc maior.png" />
+    <Content Include="Icons\PUC menor.jpg" />
+    <Content Include="Icons\puc2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
