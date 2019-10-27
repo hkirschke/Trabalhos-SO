@@ -11,7 +11,8 @@ namespace ProcessReader
     {
       InitializeComponent();
       LoadInfoServices();
-      //LoadInfoProcess();
+      LoadInfoProcess();
+      LoadInfoPC();
     }
 
     private void BtnClose_Click(object sender, EventArgs e)
@@ -27,7 +28,7 @@ namespace ProcessReader
       Process[] processes = Process.GetProcesses();
       foreach (var proc in processes)
       {
-        dtgProcess.Rows.Add(proc.ProcessName, proc.Id, GetSize(proc.WorkingSet64));
+        dtgProcess.Rows.Add(proc.ProcessName, proc.Id, Utils.GetSize(proc.WorkingSet64));
       }
     }
 
@@ -40,19 +41,10 @@ namespace ProcessReader
       }
     }
 
-    private static string GetSize(double byteCount)
+    private void LoadInfoPC()
     {
-      string size = "0 Bytes";
-      if (byteCount >= 1073741824.0)
-        size = string.Format("{0:##.##}", byteCount / 1073741824.0) + " GB";
-      else if (byteCount >= 1048576.0)
-        size = string.Format("{0:##.##}", byteCount / 1048576.0) + " MB";
-      else if (byteCount >= 1024.0)
-        size = string.Format("{0:##.##}", byteCount / 1024.0) + " KB";
-      else if (byteCount > 0 && byteCount < 1024.0)
-        size = byteCount.ToString() + " Bytes";
-
-      return size;
+      rTxtInfoPC.Text = InfoPC.LoadInfo().ToString();
     }
+
   }
 }

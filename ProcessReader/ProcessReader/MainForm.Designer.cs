@@ -35,20 +35,22 @@
       this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.PCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Memory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.tbServices = new System.Windows.Forms.TabPage(); 
-      this.tbInfo = new System.Windows.Forms.TabPage();
-      this.BtnClose = new System.Windows.Forms.Button();
-      this.ProcUpdate = new System.Windows.Forms.Timer(this.components);
+      this.tbServices = new System.Windows.Forms.TabPage();
       this.dtgService = new System.Windows.Forms.DataGridView();
       this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.tbInfo = new System.Windows.Forms.TabPage();
+      this.BtnClose = new System.Windows.Forms.Button();
+      this.ProcUpdate = new System.Windows.Forms.Timer(this.components);
+      this.rTxtInfoPC = new System.Windows.Forms.RichTextBox();
       this.tbControl.SuspendLayout();
       this.tbProcess.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dtgProcess)).BeginInit();
-      this.tbServices.SuspendLayout(); 
+      this.tbServices.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dtgService)).BeginInit();
+      this.tbInfo.SuspendLayout();
       this.SuspendLayout();
       // 
       // tbControl
@@ -113,42 +115,14 @@
       // 
       // tbServices
       // 
-      this.tbServices.Controls.Add(this.dtgService); 
+      this.tbServices.Controls.Add(this.dtgService);
       this.tbServices.Location = new System.Drawing.Point(4, 27);
       this.tbServices.Name = "tbServices";
       this.tbServices.Padding = new System.Windows.Forms.Padding(3);
       this.tbServices.Size = new System.Drawing.Size(901, 535);
       this.tbServices.TabIndex = 1;
       this.tbServices.Text = "Services";
-      this.tbServices.UseVisualStyleBackColor = true; 
-      // 
-      // tbInfo
-      // 
-      this.tbInfo.Location = new System.Drawing.Point(4, 27);
-      this.tbInfo.Name = "tbInfo";
-      this.tbInfo.Padding = new System.Windows.Forms.Padding(3);
-      this.tbInfo.Size = new System.Drawing.Size(901, 535);
-      this.tbInfo.TabIndex = 2;
-      this.tbInfo.Text = "Info";
-      this.tbInfo.UseVisualStyleBackColor = true;
-      // 
-      // BtnClose
-      // 
-      this.BtnClose.BackColor = System.Drawing.SystemColors.Highlight;
-      this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-      this.BtnClose.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-      this.BtnClose.Location = new System.Drawing.Point(814, 594);
-      this.BtnClose.Name = "BtnClose";
-      this.BtnClose.Size = new System.Drawing.Size(107, 31);
-      this.BtnClose.TabIndex = 1;
-      this.BtnClose.Text = "Close";
-      this.BtnClose.UseVisualStyleBackColor = false;
-      this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
-      // 
-      // ProcUpdate
-      // 
-      this.ProcUpdate.Enabled = true;
-      this.ProcUpdate.Interval = 5000;
+      this.tbServices.UseVisualStyleBackColor = true;
       // 
       // dtgService
       // 
@@ -193,6 +167,43 @@
       this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
       this.dataGridViewTextBoxColumn3.ReadOnly = true;
       // 
+      // tbInfo
+      // 
+      this.tbInfo.Controls.Add(this.rTxtInfoPC);
+      this.tbInfo.Location = new System.Drawing.Point(4, 27);
+      this.tbInfo.Name = "tbInfo";
+      this.tbInfo.Padding = new System.Windows.Forms.Padding(3);
+      this.tbInfo.Size = new System.Drawing.Size(901, 535);
+      this.tbInfo.TabIndex = 2;
+      this.tbInfo.Text = "Info";
+      this.tbInfo.UseVisualStyleBackColor = true;
+      // 
+      // BtnClose
+      // 
+      this.BtnClose.BackColor = System.Drawing.SystemColors.Highlight;
+      this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+      this.BtnClose.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+      this.BtnClose.Location = new System.Drawing.Point(814, 594);
+      this.BtnClose.Name = "BtnClose";
+      this.BtnClose.Size = new System.Drawing.Size(107, 31);
+      this.BtnClose.TabIndex = 1;
+      this.BtnClose.Text = "Close";
+      this.BtnClose.UseVisualStyleBackColor = false;
+      this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+      // 
+      // ProcUpdate
+      // 
+      this.ProcUpdate.Enabled = true;
+      this.ProcUpdate.Interval = 5000;
+      // 
+      // rTxtInfoPC
+      // 
+      this.rTxtInfoPC.Location = new System.Drawing.Point(6, 6);
+      this.rTxtInfoPC.Name = "rTxtInfoPC";
+      this.rTxtInfoPC.Size = new System.Drawing.Size(889, 523);
+      this.rTxtInfoPC.TabIndex = 0;
+      this.rTxtInfoPC.Text = "";
+      // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -210,8 +221,9 @@
       this.tbControl.ResumeLayout(false);
       this.tbProcess.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.dtgProcess)).EndInit();
-      this.tbServices.ResumeLayout(false); 
+      this.tbServices.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.dtgService)).EndInit();
+      this.tbInfo.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -225,7 +237,7 @@
     private System.Windows.Forms.Button BtnClose; 
     private System.Windows.Forms.DataGridView dtgProcess;
     private System.Windows.Forms.Timer ProcUpdate;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Name;
+    private new System.Windows.Forms.DataGridViewTextBoxColumn Name;
     private System.Windows.Forms.DataGridViewTextBoxColumn PCID;
     private System.Windows.Forms.DataGridViewTextBoxColumn Memory;
     private System.Windows.Forms.DataGridView dtgService;
@@ -233,6 +245,7 @@
     private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+    private System.Windows.Forms.RichTextBox rTxtInfoPC;
   }
 }
 
