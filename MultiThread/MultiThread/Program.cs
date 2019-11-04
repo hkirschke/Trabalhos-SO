@@ -7,18 +7,21 @@ namespace MultiThread
     {
         private static int NumParam = 0;
         private static double SomaGeral = 0;
-
+        private static Thread thread1;
+        private static Thread thread2;
+        static Semaphore _pool;
         public static void Main(string[] args)
         {
             if (!int.TryParse(args[0], out NumParam))
             {
                 throw new InvalidOperationException($"Parâmetro invalido {args[0]}");
             }
+            _pool = new Semaphore(3, 3);
             Console.WriteLine($"Parâmetro informado {NumParam}");
             TimerCallback callback = new TimerCallback(Cronometro);
-            Timer stateTimer = new Timer(callback, null, 0, 1000);
-            Thread thread1 = new Thread(Fatorial);
-            Thread thread2 = new Thread(Fibonacci);
+            Timer stateTimer = new Timer(callback, null, 0, 2000);
+            thread1 = new Thread(Fatorial);
+            thread2 = new Thread(Fibonacci);
             thread1.Start();
             thread2.Start();
             Console.ReadKey();
@@ -30,11 +33,14 @@ namespace MultiThread
             double numAtual = 1, numAnt = 0;
             for (double i = 1; i < NumParam; i++)
             {
-                SomaGeral = numAtual + numAnt;
                 numAnt = numAtual;
                 numAtual = SomaGeral;
+                Thread.Sleep(10000);
+                SomaGeral += numAtual + numAnt;
                 Console.WriteLine($"Numero Atual Fibonacci: {numAtual}");
             }
+            Console.WriteLine($"Final Fibonnaci: Soma Geral: {SomaGeral}");
+            Thread.Sleep(15000);
         }
 
         // Método calculador do fatorial.
@@ -44,9 +50,12 @@ namespace MultiThread
             for (int i = NumParam - 1; i > 1; i--)
             {
                 fatorial *= i;
-                SomaGeral = SomaGeral + fatorial;
+                Thread.Sleep(6000);
+                SomaGeral += fatorial;
                 Console.WriteLine($"Numero Fatorial: {fatorial}");
             }
+            Console.WriteLine($"Final Fatorial: Soma Geral: {SomaGeral}");
+            Thread.Sleep(15000);
         }
 
         public static void Cronometro(object stateInfo)
