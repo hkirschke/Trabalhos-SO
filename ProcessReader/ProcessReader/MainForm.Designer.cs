@@ -32,26 +32,26 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.tbControl = new System.Windows.Forms.TabControl();
       this.tbProcess = new System.Windows.Forms.TabPage();
-      this.dtgProcess = new System.Windows.Forms.DataGridView();
       this.tbServices = new System.Windows.Forms.TabPage();
       this.dtgService = new System.Windows.Forms.DataGridView();
-      this.tbInfo = new System.Windows.Forms.TabPage();
-      this.rTxtInfoPC = new System.Windows.Forms.RichTextBox();
-      this.BtnClose = new System.Windows.Forms.Button();
-      this.ProcUpdate = new System.Windows.Forms.Timer(this.components);
-      this.ProcessName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.PCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.Memory = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.ServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.tbInfo = new System.Windows.Forms.TabPage();
+      this.rTxtInfoPC = new System.Windows.Forms.RichTextBox();
+      this.BtnClose = new System.Windows.Forms.Button();
+      this.ProcUpdate = new System.Windows.Forms.Timer(this.components);
+      this.Memory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.PCID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.ProcessName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+      this.dtgProcess = new System.Windows.Forms.DataGridView();
       this.tbControl.SuspendLayout();
       this.tbProcess.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.dtgProcess)).BeginInit();
       this.tbServices.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.dtgService)).BeginInit();
       this.tbInfo.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.dtgProcess)).BeginInit();
       this.SuspendLayout();
       // 
       // tbControl
@@ -76,25 +76,7 @@
       this.tbProcess.Padding = new System.Windows.Forms.Padding(3);
       this.tbProcess.Size = new System.Drawing.Size(901, 535);
       this.tbProcess.TabIndex = 0;
-      this.tbProcess.Text = "Processes";
-      // 
-      // dtgProcess
-      // 
-      this.dtgProcess.AllowUserToAddRows = false;
-      this.dtgProcess.AllowUserToDeleteRows = false;
-      this.dtgProcess.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-      this.dtgProcess.BackgroundColor = System.Drawing.Color.White;
-      this.dtgProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-      this.dtgProcess.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProcessName,
-            this.PCID,
-            this.Memory});
-      this.dtgProcess.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.dtgProcess.Location = new System.Drawing.Point(3, 3);
-      this.dtgProcess.Name = "dtgProcess";
-      this.dtgProcess.ReadOnly = true;
-      this.dtgProcess.Size = new System.Drawing.Size(895, 529);
-      this.dtgProcess.TabIndex = 3;
+      this.tbProcess.Text = "Processes (4.3)";
       // 
       // tbServices
       // 
@@ -104,7 +86,7 @@
       this.tbServices.Padding = new System.Windows.Forms.Padding(3);
       this.tbServices.Size = new System.Drawing.Size(901, 535);
       this.tbServices.TabIndex = 1;
-      this.tbServices.Text = "Services";
+      this.tbServices.Text = "Services (4.4)";
       this.tbServices.UseVisualStyleBackColor = true;
       // 
       // dtgService
@@ -126,6 +108,30 @@
       this.dtgService.Size = new System.Drawing.Size(895, 529);
       this.dtgService.TabIndex = 4;
       // 
+      // ServiceName
+      // 
+      this.ServiceName.HeaderText = "Name";
+      this.ServiceName.Name = "ServiceName";
+      this.ServiceName.ReadOnly = true;
+      // 
+      // Status
+      // 
+      this.Status.HeaderText = "Status";
+      this.Status.Name = "Status";
+      this.Status.ReadOnly = true;
+      // 
+      // dataGridViewTextBoxColumn2
+      // 
+      this.dataGridViewTextBoxColumn2.HeaderText = "Service Type";
+      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+      this.dataGridViewTextBoxColumn2.ReadOnly = true;
+      // 
+      // dataGridViewTextBoxColumn3
+      // 
+      this.dataGridViewTextBoxColumn3.HeaderText = "Start Type";
+      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+      this.dataGridViewTextBoxColumn3.ReadOnly = true;
+      // 
       // tbInfo
       // 
       this.tbInfo.Controls.Add(this.rTxtInfoPC);
@@ -134,7 +140,7 @@
       this.tbInfo.Padding = new System.Windows.Forms.Padding(3);
       this.tbInfo.Size = new System.Drawing.Size(901, 535);
       this.tbInfo.TabIndex = 2;
-      this.tbInfo.Text = "Info";
+      this.tbInfo.Text = "Info (4.5)";
       this.tbInfo.UseVisualStyleBackColor = true;
       // 
       // rTxtInfoPC
@@ -162,18 +168,7 @@
       // 
       this.ProcUpdate.Enabled = true;
       this.ProcUpdate.Interval = 5000;
-      // 
-      // ProcessName
-      // 
-      this.ProcessName.HeaderText = "Name";
-      this.ProcessName.Name = "ProcessName";
-      this.ProcessName.ReadOnly = true;
-      // 
-      // PCID
-      // 
-      this.PCID.HeaderText = "PCID";
-      this.PCID.Name = "PCID";
-      this.PCID.ReadOnly = true;
+      this.ProcUpdate.Tick += new System.EventHandler(this.ProcUpdate_Tick);
       // 
       // Memory
       // 
@@ -181,29 +176,35 @@
       this.Memory.Name = "Memory";
       this.Memory.ReadOnly = true;
       // 
-      // ServiceName
+      // PCID
       // 
-      this.ServiceName.HeaderText = "Name";
-      this.ServiceName.Name = "ServiceName";
-      this.ServiceName.ReadOnly = true;
+      this.PCID.HeaderText = "PCID";
+      this.PCID.Name = "PCID";
+      this.PCID.ReadOnly = true;
       // 
-      // Status
+      // ProcessName
       // 
-      this.Status.HeaderText = "Status";
-      this.Status.Name = "Status";
-      this.Status.ReadOnly = true;
+      this.ProcessName.HeaderText = "Name";
+      this.ProcessName.Name = "ProcessName";
+      this.ProcessName.ReadOnly = true;
       // 
-      // dataGridViewTextBoxColumn2
+      // dtgProcess
       // 
-      this.dataGridViewTextBoxColumn2.HeaderText = "Service Type";
-      this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-      this.dataGridViewTextBoxColumn2.ReadOnly = true;
-      // 
-      // dataGridViewTextBoxColumn3
-      // 
-      this.dataGridViewTextBoxColumn3.HeaderText = "Start Type";
-      this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-      this.dataGridViewTextBoxColumn3.ReadOnly = true;
+      this.dtgProcess.AllowUserToAddRows = false;
+      this.dtgProcess.AllowUserToDeleteRows = false;
+      this.dtgProcess.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+      this.dtgProcess.BackgroundColor = System.Drawing.Color.White;
+      this.dtgProcess.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+      this.dtgProcess.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProcessName,
+            this.PCID,
+            this.Memory});
+      this.dtgProcess.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.dtgProcess.Location = new System.Drawing.Point(3, 3);
+      this.dtgProcess.Name = "dtgProcess";
+      this.dtgProcess.ReadOnly = true;
+      this.dtgProcess.Size = new System.Drawing.Size(895, 529);
+      this.dtgProcess.TabIndex = 3;
       // 
       // MainForm
       // 
@@ -224,10 +225,10 @@
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
       this.tbControl.ResumeLayout(false);
       this.tbProcess.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.dtgProcess)).EndInit();
       this.tbServices.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.dtgService)).EndInit();
       this.tbInfo.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.dtgProcess)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -239,17 +240,17 @@
     private System.Windows.Forms.TabPage tbServices;
     private System.Windows.Forms.TabPage tbInfo;
     private System.Windows.Forms.Button BtnClose; 
-    private System.Windows.Forms.DataGridView dtgProcess;
     private System.Windows.Forms.Timer ProcUpdate;
     private System.Windows.Forms.DataGridView dtgService;
     private System.Windows.Forms.RichTextBox rTxtInfoPC;
-    private System.Windows.Forms.DataGridViewTextBoxColumn ProcessName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn PCID;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Memory;
     private System.Windows.Forms.DataGridViewTextBoxColumn ServiceName;
     private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+    private System.Windows.Forms.DataGridView dtgProcess;
+    private System.Windows.Forms.DataGridViewTextBoxColumn ProcessName;
+    private System.Windows.Forms.DataGridViewTextBoxColumn PCID;
+    private System.Windows.Forms.DataGridViewTextBoxColumn Memory;
   }
 }
 

@@ -46,5 +46,9 @@ namespace ProcessReader
       rTxtInfoPC.Text = InfoPC.LoadInfo().ToString();
     }
 
+    private void ProcUpdate_Tick(object sender, EventArgs e)
+    {
+      LoadInfoProcess();
+    }
   }
 }

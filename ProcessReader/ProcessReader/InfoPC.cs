@@ -26,11 +26,6 @@ namespace ProcessReader
         stringBuilder.AppendLine($"Number Of Cores  -  {obj["NumberOfCores"]}");
         stringBuilder.AppendLine($"Number Of EnabledCore  -  {obj["NumberOfEnabledCore"]}");
         stringBuilder.AppendLine($"Number Of LogicalProcessors  -  {obj["NumberOfLogicalProcessors"]}");
-        //stringBuilder.AppendLine($"Architecture  -  {obj["Architecture"]}");
-        //stringBuilder.AppendLine($"Family  -  {obj["Family"]}");
-       // stringBuilder.AppendLine($"ProcessorType  -  {obj["ProcessorType"]}");
-        //stringBuilder.AppendLine($"Characteristics  -  {obj["Characteristics"]}");
-       // stringBuilder.AppendLine($"AddressWidth  -  {obj["AddressWidth"]}");
       }
 
       stringBuilder.AppendLine();
@@ -39,16 +34,10 @@ namespace ProcessReader
       {
         stringBuilder.AppendLine($"Name  -  {obj["Name"]}");
         stringBuilder.AppendLine($"Status  -  { obj["Status"]}");
-        //stringBuilder.AppendLine($"Caption  -  {obj["Caption"]}");
         stringBuilder.AppendLine($"DeviceID  -  {obj["DeviceID"]}");
-        //stringBuilder.AppendLine($"AdapterRAM  -  {obj["AdapterRAM"]}");
         stringBuilder.AppendLine($"AdapterDACType  -  {obj["AdapterDACType"]}");
-        //stringBuilder.AppendLine($"Monochrome  -  { obj["Monochrome"]}");
-        //stringBuilder.AppendLine($"InstalledDisplayDrivers  -  {obj["InstalledDisplayDrivers"]}");
         stringBuilder.AppendLine($"DriverVersion  -  {obj["DriverVersion"]}");
         stringBuilder.AppendLine($"VideoProcessor  -  { obj["VideoProcessor"]}");
-        //stringBuilder.AppendLine($"Video Architecture  -  {obj["VideoArchitecture"]}");
-        //stringBuilder.AppendLine($"Video Memory Type  -  {obj["VideoMemoryType"]}");
       }
 
       stringBuilder.AppendLine();
