@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Consumer_Producer
+namespace Producer_Consumer
 {
   public class Student
   {
