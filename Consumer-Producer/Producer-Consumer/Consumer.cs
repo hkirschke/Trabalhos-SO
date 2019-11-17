@@ -27,7 +27,7 @@ namespace Producer_Consumer
           foreach (var student in _producer.LstStudents)
           {
             Console.WriteLine($"Matrícula: {student.Registration} - Nome: {student.Name} : Sequencia {_producer.Sequencia.ToString()}");
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
           }
         }
       }
@@ -39,30 +39,6 @@ namespace Producer_Consumer
       {
         Monitor.Exit(_producer);
       }
-    }
-
-    public void ConsumeSemaphoro()
-    {
-      try
-      {
-        Semaphore semaphore = new Semaphore(1, 1);
-        Thread.Sleep(1000);
-        while (true)
-        {
-          semaphore.WaitOne();
-          //Monitor.Enter(_producer);
-          foreach (var student in _producer.LstStudents)
-          {
-            Console.WriteLine($"Matrícula: {student.Registration} - Nome: {student.Name} - Sequencia {_producer.Sequencia.ToString()}");
-            //Thread.Sleep(1000);
-          }
-          semaphore.Release();
-        }
-      }
-      catch (Exception ex)
-      {
-        Console.WriteLine(ex.Message);
-      }
-    }
+    } 
   }
 }
