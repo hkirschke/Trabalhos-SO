@@ -12,18 +12,15 @@ namespace Producer_Consumer
   {
     private static Semaphore Pool;
     private static Producer producer;
+    private static Consumer consumer;
     private static Thread t1;
     private static Thread t2;
     static void Main(string[] args)
     {
       producer = new Producer();
-      ThreadSemaphoro();
-
-      //var consumer = new Consumer(producer);
-      //Thread tA = new Thread(producer.CreateListStudents);
-      //Thread tB = new Thread(consumer.ConsumeMonitor);
-      //tA.Start();
-      //tB.Start();
+      consumer = new Consumer();
+      //ThreadSemaphoro();
+      ThreadMonitor();
 
       if (Console.ReadKey().Key == ConsoleKey.T)
       {
@@ -41,17 +38,25 @@ namespace Producer_Consumer
     }
     private static void ThreadSemaphoro()
     {
-      Pool = new Semaphore(1, 1); 
+      Pool = new Semaphore(1, 1);
       t1 = new Thread(new ThreadStart(CreateListStudentsSemaphoro))
       {
         Name = "SemaphoroThread_CreateListStudents"
-      }; 
+      };
       t2 = new Thread(new ThreadStart(ConsumeSemaphoro))
       {
         Name = "SemaphoroThread_ConsumeSemaphoro"
-      }; 
+      };
       t1.Start();
       t2.Start();
+    }
+
+    private static void ThreadMonitor()
+    {
+      Thread tA = new Thread(producer.CreateListStudentsMonitor);
+      Thread tB = new Thread(consumer.ConsumeMonitor);
+      tA.Start();
+      tB.Start();
     }
     public static void CreateListStudentsSemaphoro()
     {
@@ -64,7 +69,7 @@ namespace Producer_Consumer
         {
           var splitInfo = item.Split(';');
           producer.LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
-        } 
+        }
         Pool.Release();
         producer.Sequencia++;
       }
@@ -81,12 +86,79 @@ namespace Producer_Consumer
             Console.WriteLine($"Matrícula: {student.Registration} - Nome: {student.Name} - Sequencia {producer.Sequencia.ToString()}");
             Thread.Sleep(500);
           }
-         Pool.Release();
+          Pool.Release();
         }
       }
       catch (Exception ex)
       {
         Console.WriteLine(ex.Message);
+      }
+    }
+
+    internal class Consumer
+    {
+      public void ConsumeMonitor()
+      {
+        Thread.Sleep(1000);
+        while (true)
+        {
+          lock (producer)
+          {
+            foreach (var student in producer.LstStudents)
+            {
+              Console.WriteLine($"Matrícula: {student.Registration} - Nome: {student.Name} : Sequencia {producer.Sequencia.ToString()}");
+              Thread.Sleep(1000);
+            }
+          }
+        }
+      }
+    }
+
+    internal class Producer
+    {
+      public List<Student> LstStudents;
+      public int Sequencia;
+      public Producer()
+      {
+        string[] fileLines = File.ReadAllLines("../../Matriculas.txt");
+        LstStudents = new List<Student>();
+        foreach (string item in fileLines)
+        {
+          var splitInfo = item.Split(';');
+          LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
+        }
+      }
+      public void CreateListStudents()
+      {
+        while (true)
+        {
+          string[] fileLines = File.ReadAllLines("../../Matriculas.txt");
+          LstStudents = new List<Student>();
+          foreach (string item in fileLines)
+          {
+            var splitInfo = item.Split(';');
+            LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
+          }
+          Sequencia++;
+        }
+      }
+      public void CreateListStudentsMonitor()
+      {
+        while (true)
+        {
+          //lock (consumer)
+          //{
+            string[] fileLines = File.ReadAllLines("../../Matriculas.txt");
+          LstStudents = new List<Student>();
+          foreach (string item in fileLines)
+          {
+            var splitInfo = item.Split(';'); 
+            LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
+          }
+          Console.WriteLine($"Sequencia aumentada");
+          Sequencia++;
+          }
+        //}
       }
     }
   }
