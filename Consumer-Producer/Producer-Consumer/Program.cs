@@ -50,13 +50,12 @@ namespace Producer_Consumer
       t1.Start();
       t2.Start();
     }
-
     private static void ThreadMonitor()
     {
-      Thread tA = new Thread(producer.CreateListStudentsMonitor);
-      Thread tB = new Thread(consumer.ConsumeMonitor);
-      tA.Start();
-      tB.Start();
+      t1 = new Thread(producer.CreateListStudentsMonitor);
+      t2 = new Thread(consumer.ConsumeMonitor);
+      t1.Start();
+      t2.Start();
     }
     public static void CreateListStudentsSemaphoro()
     {
@@ -94,20 +93,21 @@ namespace Producer_Consumer
         Console.WriteLine(ex.Message);
       }
     }
-
     internal class Consumer
     {
       public void ConsumeMonitor()
       {
-        Thread.Sleep(1000);
         while (true)
         {
           lock (producer)
           {
-            foreach (var student in producer.LstStudents)
+            lock (consumer)
             {
-              Console.WriteLine($"Matrícula: {student.Registration} - Nome: {student.Name} : Sequencia {producer.Sequencia.ToString()}");
-              Thread.Sleep(1000);
+              foreach (var student in producer.LstStudents)
+              {
+                Console.WriteLine($"Matrícula: {student.Registration} - Nome: {student.Name} : Sequencia {producer.Sequencia.ToString()}");
+                Thread.Sleep(1000);
+              }
             }
           }
         }
@@ -120,6 +120,11 @@ namespace Producer_Consumer
       public int Sequencia;
       public Producer()
       {
+        AddStudents();
+      }
+
+      private void AddStudents()
+      {
         string[] fileLines = File.ReadAllLines("../../Matriculas.txt");
         LstStudents = new List<Student>();
         foreach (string item in fileLines)
@@ -128,17 +133,12 @@ namespace Producer_Consumer
           LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
         }
       }
+
       public void CreateListStudents()
       {
         while (true)
         {
-          string[] fileLines = File.ReadAllLines("../../Matriculas.txt");
-          LstStudents = new List<Student>();
-          foreach (string item in fileLines)
-          {
-            var splitInfo = item.Split(';');
-            LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
-          }
+          AddStudents();
           Sequencia++;
         }
       }
@@ -146,19 +146,15 @@ namespace Producer_Consumer
       {
         while (true)
         {
-          //lock (consumer)
-          //{
-            string[] fileLines = File.ReadAllLines("../../Matriculas.txt");
-          LstStudents = new List<Student>();
-          foreach (string item in fileLines)
+          lock (producer)
           {
-            var splitInfo = item.Split(';'); 
-            LstStudents.Add(new Student(splitInfo[0], splitInfo[1]));
+            lock (consumer)
+            {
+              AddStudents();
+              Sequencia++;
+            }
           }
-          Console.WriteLine($"Sequencia aumentada");
-          Sequencia++;
-          }
-        //}
+        }
       }
     }
   }
